@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const { default: mongoose } = require('mongoose');
 
 const roomSchema = new mongoose.Schema({
     name : {
@@ -10,7 +10,7 @@ const roomSchema = new mongoose.Schema({
 
     pricePerNight : {
         type : Number,
-        required: [true, 'Please enter room price'],
+        required: [true, 'Please enter room price per night'],
         maxLength: [4, 'Room price cannot exceed 4 characters'],
         default : 0.0
     },
@@ -132,4 +132,4 @@ const roomSchema = new mongoose.Schema({
 
 })
 
-export default mongoose.models.Room || mongoose.model('Room', roomSchema);
+module.exports = mongoose.models.Room || mongoose.model('Room', roomSchema);
