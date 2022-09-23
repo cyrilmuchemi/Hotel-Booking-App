@@ -4,6 +4,10 @@ import { useRouter } from 'next/router';
 const Search = () => {
 
     const [ location, setLocation ] = useState('');
+    
+    const [guests, setGuests] = useState('');
+
+    const [category, setCategory] = useState('');
 
     const router = useRouter();
 
@@ -12,7 +16,7 @@ const Search = () => {
 
         if(location.trim()) {
 
-            router.push(`/?location=${location}`)
+            router.push(`/?location=${location}&guests=${guests}&category=${category}`)
         }
         else {
             router.push(`/`)
