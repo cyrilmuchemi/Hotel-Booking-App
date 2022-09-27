@@ -18,7 +18,8 @@ const Login = () => {
         const result = await signIn('credentials', {
             redirect: false,
             email,
-            password
+            password,
+            callbackUrl: `${window.location.origin}/account_page` 
         })
 
         setLoading(false)
