@@ -1,6 +1,7 @@
 import  Mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 
 const userSchema = new Mongoose.Schema({
 
@@ -65,6 +66,16 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 
     return await bcrypt.compare(enteredPassword, this.password)
 
+}
+
+//Generate forgot password reset token
+userSchema.methods.getResetPasswordToken = async function () {
+
+    const resettoken = crypto.randomBytes(20).toString('hex')
+    this.resetPasswordToken = crypto.createHash('sha258').update(resettoken).digest('hex');
+    this.resetPasswordExpire = Date.now() + 30 * 60 * 1000
+
+    return resettoken;
 }
 
 

@@ -1,15 +1,32 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Carousel } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { clearErros } from '../../redux/actions/roomActions'
 import RoomFeatures from './Roomfeatures';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const RoomDetails = () => {
+  const [checkInDate, setCheckInDate] = useState()
+  const [checkOutDate, setCheckOutDate] = useState()
   const dispatch = useDispatch()
   const { room, error } = useSelector((state) => state.roomDetails)
+
+  const onChange = (dates) => {
+    const [checkInDate, checkOutDate] = dates;
+    setCheckInDate(checkInDate);
+    setCheckOutDate(checkOutDate)
+
+    if(checkInDate&&checkOutDate) {
+
+      console.log(checkInDate.toISOString(), checkOutDate.toISOString())
+
+    }
+
+  }
 
   useEffect(() => {
     if (error) {
@@ -62,7 +79,19 @@ const RoomDetails = () => {
               <p className='price-per-night'>
                 <b>${room.pricePerNight}</b> / night
               </p>
-
+              <hr/>
+              <p className='mt-5 mb-3'>
+                Pick CheckIn & CheckOut Dates
+              </p>
+              <DatePicker
+              className='w-100'
+              selected={checkInDate}
+              onChange={onChange}
+              startDate={checkInDate}
+              endDate={checkOutDate}
+              selectsRange
+              inline
+              />
               <button className='btn btn-block py-3 booking-btn'>Pay</button>
             </div>
           </div>

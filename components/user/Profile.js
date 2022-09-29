@@ -6,7 +6,7 @@ import ButtonLoader from '../layout/ButtonLoader'
 import Loader from '../layout/Loader'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { updateProfile } from '../../redux/actions/userActions'
+import { updateProfile, clearErrors } from '../../redux/actions/userActions'
 import { UPDATE_PROFILE_RESET } from '../../redux/constants/userConstants'
 
 const Profile = () => {
@@ -40,6 +40,7 @@ const Profile = () => {
 
         if (error) {
             toast.error(error);
+            dispatch(clearErrors())
         }
 
         if (isUpdated) {
