@@ -8,12 +8,16 @@ import { clearErros } from '../../redux/actions/roomActions'
 import RoomFeatures from './Roomfeatures';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
+import { useRouter } from 'next/router'
 
 const RoomDetails = () => {
   const [checkInDate, setCheckInDate] = useState()
   const [checkOutDate, setCheckOutDate] = useState()
+  const [daysOfstay, setDaysOfStay] = useState()
   const dispatch = useDispatch()
   const { room, error } = useSelector((state) => state.roomDetails)
+  const router = useRouter()
 
   const onChange = (dates) => {
     const [checkInDate, checkOutDate] = dates;
@@ -21,11 +25,41 @@ const RoomDetails = () => {
     setCheckOutDate(checkOutDate)
 
     if(checkInDate&&checkOutDate) {
+  //Calculate days of stay
+      const days = Math.floor(((new Date(checkOutDate) - new Date(checkInDate)) / 86400000 ) + 1);
+      setDaysOfStay(days)
+    }
+  }
 
-      console.log(checkInDate.toISOString(), checkOutDate.toISOString())
-
+  const newBookingHandler = async () => {
+    const bookingData = {
+      room: router.query.id,
+      checkInDate,
+      checkOutDate,
+      daysOfstay,
+      amountPaid: 90,
+      paymentInfo: {
+        id: 'STRIPE_PAYMENT_ID',
+        status: 'STRIPE_PAYMENT_STATUS',
+      }
     }
 
+    try {
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+
+      const { data } = await axios.post('/api/bookings', bookingData, config)
+
+      console.log(data)
+      
+    } catch (error) {
+      console.log(error.response)
+      
+    }
   }
 
   useEffect(() => {
@@ -92,7 +126,7 @@ const RoomDetails = () => {
               selectsRange
               inline
               />
-              <button className='btn btn-block py-3 booking-btn'>Pay</button>
+              <button className='btn btn-block py-3 booking-btn' onClick={newBookingHandler}>Pay</button>
             </div>
           </div>
         </div>

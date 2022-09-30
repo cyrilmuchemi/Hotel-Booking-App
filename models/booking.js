@@ -25,7 +25,6 @@ const bookingSchema = new Mongoose.Schema({
     },
     daysOfStay: {
         type: Number,
-        required: true,
     },
     paymentInfo: {
         id: {
@@ -39,7 +38,6 @@ const bookingSchema = new Mongoose.Schema({
     },
     paidAt: {
         type: Date,
-        required: true,
     },
     createdAt: {
         type: Date,
