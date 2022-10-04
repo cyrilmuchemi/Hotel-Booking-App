@@ -7,6 +7,8 @@ import {
     BOOKED_DATES_FAIL,
     MY_BOOKINGS_SUCCESS,
     MY_BOOKINGS_FAIL,
+    BOOKING_DETAILS_SUCCESS,
+    BOOKING_DETAILS_FAIL,
     CLEAR_ERRORS
 } from '../constants/bookingConstants'
 
@@ -98,6 +100,36 @@ export const bookingsReducer = (state={ bookings: [] }, action) => {
         }
 
         case MY_BOOKINGS_FAIL:
+            return {
+                load: false,
+                error: action.payload
+            }
+        
+        
+        case CLEAR_ERRORS: 
+            return {
+                ... state,
+                error: null
+            }
+        
+        default:
+            return state
+    }
+}
+
+
+export const bookingDetailsReducer = (state={ booking: {} }, action) => {
+    switch (action.type) {
+
+
+        case BOOKING_DETAILS_SUCCESS:
+
+        return {
+            load: false,
+            booking: action.payload
+        }
+
+        case BOOKING_DETAILS_FAIL:
             return {
                 load: false,
                 error: action.payload
