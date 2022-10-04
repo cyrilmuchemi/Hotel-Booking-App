@@ -12,11 +12,13 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import { checkBooking, getBookedDates } from '../../redux/actions/bookingActions'
 import { CHECK_BOOKING_RESET } from '../../redux/constants/bookingConstants'
+import getstripe from '../../utils/getStripe';
 
 const RoomDetails = () => {
   const [checkInDate, setCheckInDate] = useState()
   const [checkOutDate, setCheckOutDate] = useState()
   const [daysOfstay, setDaysOfStay] = useState()
+  const [paymentLoading, setPaymentLoading] = useState(false)
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.loadedUser)
   const { dates } = useSelector((state) => state.bookedDates)
@@ -76,6 +78,32 @@ const RoomDetails = () => {
     }
   }
 
+  const bookRoom = async (id, pricePerNight) => {
+
+    setPaymentLoading(true)
+
+    const amount = pricePerNight * daysOfstay;
+
+    try {
+
+      const link = `/api/checkout_session/${id}?checkInDate=${checkInDate.toISOString()}&checkOutDate=${checkOutDate.toISOString()}&daysOfStay=${daysOfstay}`
+
+      const { data } = await axios.get(link, { params: { amount }})
+
+      const stripe = await getstripe();
+
+      //Redirect to checkout
+      stripe.redirectToCheckout({ sessionId: data.id })
+      setPaymentLoading(false);
+      
+    } catch (error) {
+      setPaymentLoading(false);
+      console.log(error)
+      toast.error(error.message)
+    }
+
+  }
+
   useEffect(() => {
 
     dispatch(getBookedDates(id))
@@ -83,6 +111,12 @@ const RoomDetails = () => {
     if (error) {
       toast.error(error)
       dispatch(clearErros())
+
+      return () => {
+        dispatch({ CHECK_BOOKING_RESET })
+      }
+
+
     }
   }, [dispatch, id])
 
@@ -158,7 +192,13 @@ const RoomDetails = () => {
                 Login to Book room.
               </div>}
               {available && user &&
-              <button className='btn btn-block py-3 booking-btn' onClick={newBookingHandler}>Pay</button>
+              <button 
+              className='btn btn-block py-3 booking-btn' 
+              onClick={() => bookRoom(room._id, room.pricePerNight)}
+              disabled={ bookingLoading || paymentLoading ? true : false }
+
+              >Pay - ${daysOfstay * room.pricePerNight}
+              </button>
               }
             </div>
           </div>
