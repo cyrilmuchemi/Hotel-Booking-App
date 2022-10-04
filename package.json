@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
+    "@stripe/stripe-js": "^1.38.1",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.32.0",
@@ -40,6 +41,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "standard": "^17.0.0",
+    "stripe": "^10.12.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {
