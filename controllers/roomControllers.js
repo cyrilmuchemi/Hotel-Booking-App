@@ -3,6 +3,7 @@ import ErrorHandler from '../utils/errorHandler';
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
 import APIFeatures from '../utils/apiFeatures';
 import Booking from '../models/booking';
+import cloudinary from 'cloudinary';
 
 //Get all rooms
 const allRooms = catchAsyncErrors( async(req, res) => {
@@ -33,6 +34,26 @@ const allRooms = catchAsyncErrors( async(req, res) => {
 //Create new rooms
 
 const newRoom = catchAsyncErrors( async (req, res) => {
+
+    const images = req.body.images
+
+    let imagesLinks = [];
+
+    for(let i = 0; i < images.length; i++) {
+
+        const result = await cloudinary.v2.uploader.upload(images[i], {
+            folder: 'bookIt/rooms',
+        })
+
+        imagesLinks.push({
+            public_id: result.public_id,
+            url: result.secure_url
+        })
+
+    }
+
+    req.body.images = imagesLinks;
+    req.body.user = req.user._id;
     
     const room = await Room.create(req.body);
 
@@ -73,6 +94,32 @@ const updateRoom =  catchAsyncErrors( async (req, res) => {
         return next(new ErrorHandler('Room not found with this ID', 404))
     }
 
+    if(req.body.images) {
+
+        const images = req.body.images
+
+        for (let i = 0; i < images.length; i++) {
+            await cloudinary.v2.uploader.destroy(room.images[i].public_id)
+        }
+
+        let imagesLinks = []
+
+        for(let i = 0; i <  images.length; i++) {
+
+            const result = await cloudinary.v2.uploader.upload(images[i], {
+                folder: 'bookIt/rooms',
+            })
+    
+            imagesLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url
+            })
+    
+        }
+
+        req.body.images = imagesLinks;
+    }
+
     room = await Room.findByIdAndUpdate(req.query.id, req.body, {
         new: true,
         runValidators: true,
@@ -96,6 +143,10 @@ const deleteRoom =  catchAsyncErrors( async (req, res) => {
     if(!room) {
     
         return next(new ErrorHandler('Room not found with this ID', 404))
+    }
+
+    for (let i = 0; i < room.images.length; i++) {
+        await cloudinary.v2.uploader.destroy(room.images[i].public_id)
     }
 
     await Room.remove()
@@ -172,8 +223,21 @@ const checkReviewAvailability =  catchAsyncErrors( async (req, res) => {
   
 })
 
+// Get all rooms for the admin route
+const allAdminRooms =  catchAsyncErrors( async (req, res) => {
+
+   const rooms = await Room.find()
+
+   
+    res.status(200).json({
+        success: true,
+        rooms
+    })
+  
+})
 
 
 
 
-export {allRooms, newRoom, singleRoom, updateRoom, deleteRoom, createRoomReview, checkReviewAvailability}
+
+export {allRooms, newRoom, singleRoom, updateRoom, deleteRoom, createRoomReview, checkReviewAvailability, allAdminRooms}

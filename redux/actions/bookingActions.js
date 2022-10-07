@@ -112,6 +112,7 @@ export const getBookingDetails = (authCookie, req, id) => async (dispatch) => {
        })
         
     } catch (error) {
+        console.log(error)
         dispatch({
             type: BOOKING_DETAILS_FAIL,
             payload: error.response.data.message

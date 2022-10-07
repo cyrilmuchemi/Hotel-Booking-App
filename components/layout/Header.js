@@ -26,7 +26,7 @@ const Header = () => {
             <div className='col-3 p-0'>
                 <div className='navbar-brand'>
                 <Link href='/'>
-                <img style={{ cursor: 'pointer' }} src="/images/bookit_logo.png" alt="BookIT" />
+                <img style={{ cursor: 'pointer' }} width='120' height='50' src="/images/MTALII.png" alt="Mtalii" />
                 </Link>
                 </div>
             </div>
@@ -51,6 +51,14 @@ const Header = () => {
                     <span>{user && user.name}</span>
                   </a>
                   <div className='dropdown-menu' aria-labelledby='dropDownMenuButton'>
+                    {user.role == 'admin' && (
+                      <>
+                    <Link href='/admin/rooms'>
+                      <a className='dropdown-item'>Rooms</a>
+                    </Link>
+                    <hr/>
+                      </>
+                    )}
                     <Link href='/bookings/me'>
                       <a className='dropdown-item'>My Bookings</a>
                     </Link>
