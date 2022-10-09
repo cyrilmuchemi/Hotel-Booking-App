@@ -1,5 +1,5 @@
 import React from 'react'
-import { getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 
 import BookingDetails from '../../components/booking/BookingDetails'
 import Layout from '../../components/layout/Layout'
@@ -15,7 +15,7 @@ const BookingDetailsPage = () => {
     )
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(async ({ req, params, store }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ res, req, params}) => {
     const session = await getSession({ req })
 
     if (!session) {
