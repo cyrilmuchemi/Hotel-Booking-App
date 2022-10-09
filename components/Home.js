@@ -55,7 +55,7 @@ const Home = () => {
       }
     </div>
   </section>
-  {resPerPage < count &&
+  {resPerPage <= count &&
   <div className='d-flex justify-content-center mt-5'>
   <Pagination
     activePage={page}
