@@ -2,8 +2,11 @@ const Room = require('../models/room');
 const rooms = require('../data/rooms');
 const mongoose  = require('mongoose');
 
-mongoose.connect('mongodb://0.0.0.0:27017/', {
+mongoose.connect('mongodb+srv://Mtalii:kakitu2021@cluster0.qs2rbc7.mongodb.net/?retryWrites=true&w=majority', {
     UseUnifiedTopology: true,
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
 })
 
 const seedRooms = async () => {
