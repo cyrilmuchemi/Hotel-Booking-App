@@ -1,56 +1,82 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
+# Mtalii
 
-# Project Name
+> This is a Full-Stack Hotel Booking Application
 
-> Description the project.
+## Screenshots
+
+- **Desktop View**
+
+![Desktop](./screenshot/Mta2.png)
+
 
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Next Js
+- Bootstrap
+- Cloudinary
+- Redux
+- Next Connect
+- Node Js
+- Mongo DB
 
-## Live Demo (if available)
+## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+- https://hotel-booking-app-dusky.vercel.app//
 
 
 ## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
 
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
+- VS code/ Sublime text or any other editor
+- Working internet connection
+
 ### Setup
 
-### Install
+-If you installed git you can clone the code to your machine, or download a ZIP of all the files directly.
 
-### Usage
+-[Download the ZIP from this location](https://github.com/cyrilmuchemi/Hotel-Booking-App), or run the following [git](https://git-scm.com/downloads) command to clone the files to your machine:
 
-### Run tests
+-```bash
+git clone https://github.com/cyrilmuchemi/Hotel-Booking-App. 
 
-### Deployment
+- Once the files are on your machine, open the Hotel-Booking-App_ folder in [Visual Studio Code](https://code.visualstudio.com/), and follow the steps in Installation & Set Up
 
 
+## 🛠 Installation & Set Up
 
+1. Install Node Modules
+
+   ```sh
+   npm install
+
+2. Start the development server
+
+   ```sh
+   npm start
+
+3. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+
+## 🚀 Building and Running for Production
+
+1. Generate a full static production build
+
+    ```sh
+   npm run build
+   
+   
 ## Authors
 
 👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@cyrilmuchemi](https://github.com/cyrilmuchemi)
+- Twitter: [@cyril muchemi](https://twitter.com/cyrilmuchemi)
+- LinkedIn: [Cyril Muchemi](https://linkedin.com/in/cyrilmuchemi)
 
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 ## 🤝 Contributing
 
@@ -62,14 +88,8 @@ Feel free to check the [issues page](../../issues/).
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
 
 ## 📝 License
 
-This project is [MIT](./LICENSE) licensed.
+This project is [MIT](./MIT.md) licensed.
 
-_NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) - you can set it up quickly by [using templates available on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository). You can also use [any other license](https://choosealicense.com/licenses/) if you wish._
