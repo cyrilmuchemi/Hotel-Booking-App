@@ -6,7 +6,7 @@
 
 - **Desktop View**
 
-![Desktop](./screenshot/Mta2.png)
+![Desktop](./screenshots/Mta2.png)
 
 
 
