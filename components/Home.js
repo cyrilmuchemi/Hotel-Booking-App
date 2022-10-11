@@ -5,7 +5,8 @@ import Pagination from "react-js-pagination";
 import { toast } from 'react-toastify';
 import { clearErros } from '../redux/actions/roomActions';
 import { useRouter } from 'next/router'; 
-import Link from 'next/Link';
+import Link from 'next/link'
+
 
 const Home = () => {
 
