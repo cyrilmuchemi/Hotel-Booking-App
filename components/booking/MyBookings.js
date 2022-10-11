@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify';
-import Link from 'next/Link';
+import Link from 'next/link'
 import { clearErrors } from '../../redux/actions/bookingActions'
 import { MDBDataTable } from 'mdbreact';
 import easyinvoice from 'easyinvoice';
