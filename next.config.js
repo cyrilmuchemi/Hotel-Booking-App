@@ -3,6 +3,8 @@ module.exports = {
     DB_LOCAL_URI: "mongodb://0.0.0.0:27017/",
     DB_URI: 'mongodb+srv://Mtalii:kakitu2021@cluster0.qs2rbc7.mongodb.net/?retryWrites=true&w=majority',
 
+    SECRET: 'f031cbb7e74743b5234b872856f6d682',
+
     STRIPE_API_KEY: 'pk_test_51Lp5WEEMnCAQAhVdgsdP9CLGHS5qkN1Q4lOQP4Jh2kzZqrh2pgtoK6Z71s1MO38k2quXkzJsToZiOoS46jyTUw5000cJ3tt4Dp',
 
     STRIPE_SECRET_KEY: 'whsec_woVF3IAqYI6KKxlMrmz6kyaa4LDHpKPB',
