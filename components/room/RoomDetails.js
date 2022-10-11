@@ -120,7 +120,7 @@ const RoomDetails = () => {
 
 
     }
-  }, [dispatch, id])
+  }, [dispatch, id, error])
 
   return (
     <>

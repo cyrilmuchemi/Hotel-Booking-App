@@ -23,7 +23,7 @@ const Home = () => {
   useEffect(() => {
     toast.error(error)
     dispatch(clearErros())
-  }, [])
+  }, [dispatch, error])
 
   const hanglePagination = (pageNumber) => {
     window.location.href = `/?page=${pageNumber}`

@@ -71,7 +71,7 @@ const UpdateRoom = () => {
             dispatch({ type: UPDATE_ROOM_RESET })
         }
 
-    }, [dispatch, error, roomDetailsError, isUpdated, room, id])
+    }, [dispatch, error, roomDetailsError, isUpdated, room, id, router])
 
     const submitHandler = (e) => {
         e.preventDefault()

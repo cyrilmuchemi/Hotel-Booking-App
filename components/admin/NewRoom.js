@@ -44,7 +44,7 @@ const NewRoom = () => {
             dispatch({ type: NEW_ROOM_RESET })
         }
 
-    }, [dispatch, error, success])
+    }, [dispatch, error, success, router])
 
     const submitHandler = (e) => {
         e.preventDefault()
