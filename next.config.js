@@ -18,7 +18,7 @@ module.exports = {
     SMTP_FROM_NAME: 'Mtalii',
     SMTP_FROM_EMAIL: 'noreply@Mtalii.com',
 
-    NEXTAUTH_URL: 'https://mtalii.vercel.app'
+    NEXTAUTH_URL: 'https://hotel-booking-app-dusky.vercel.app'
   },
 
   images : {
